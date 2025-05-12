@@ -19,8 +19,10 @@ const dePublisher = props => {
 					subscription.request(Number.MAX_SAFE_INTEGER)
 				)
 				.distinctUntilChanged()
-				.doOnNext(setPub)
-				.subscribe();
+				.subscribe({
+					onNext: value => setPub(value),
+					onError: error => console.error(error)
+				});
 			return () => subscription.unsubscribe();
 		}, []);
 		return pub;
