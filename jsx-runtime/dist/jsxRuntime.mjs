@@ -1,12 +1,12 @@
 import { options as r, Fragment as t } from 'preact';
 export { Fragment } from 'preact';
-import { useState as e, useEffect as n } from 'preact/hooks';
+import { useState as n, useEffect as e } from 'preact/hooks';
 import { Flux as o } from '@ckateptb/reactive-core-js';
 var f = /["&<]/;
 function u(r) {
 	if (0 === r.length || !1 === f.test(r)) return r;
-	for (var t = 0, e = 0, n = '', o = ''; e < r.length; e++) {
-		switch (r.charCodeAt(e)) {
+	for (var t = 0, n = 0, e = '', o = ''; n < r.length; n++) {
+		switch (r.charCodeAt(n)) {
 			case 34:
 				o = '&quot;';
 				break;
@@ -19,15 +19,15 @@ function u(r) {
 			default:
 				continue;
 		}
-		e !== t && (n += r.slice(t, e)), (n += o), (t = e + 1);
+		n !== t && (e += r.slice(t, n)), (e += o), (t = n + 1);
 	}
-	return e !== t && (n += r.slice(t, e)), n;
+	return n !== t && (e += r.slice(t, n)), e;
 }
 var i = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
-	a = 0,
-	c = Array.isArray,
+	c = 0,
+	a = Array.isArray,
 	p = function (r) {
-		if (c(r))
+		if (a(r))
 			return r.map(function (r) {
 				return p(r);
 			});
@@ -35,19 +35,25 @@ var i = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
 			'object' == typeof (i = r) &&
 			'function' == typeof (null == i ? void 0 : i.subscribe)
 		) {
-			var t = e(),
+			var t = n(),
 				f = t[0],
 				u = t[1];
 			return (
-				n(function () {
+				e(function () {
 					var t = o
 						.from(r)
 						.doOnSubscribe(function (r) {
 							return r.request(Number.MAX_SAFE_INTEGER);
 						})
 						.distinctUntilChanged()
-						.doOnNext(u)
-						.subscribe();
+						.subscribe({
+							onNext: function (r) {
+								return u(r);
+							},
+							onError: function (r) {
+								return console.error(r);
+							}
+						});
 					return function () {
 						return t.unsubscribe();
 					};
@@ -57,25 +63,25 @@ var i = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
 		}
 		var i;
 		if ('object' == typeof r)
-			for (var a = 0, l = Object.keys(r); a < l.length; a++) {
-				var v = l[a];
-				'props' === v ||
-					v.startsWith('_') ||
-					(null != r[v] && (r[v] = p(r[v])));
+			for (var c = 0, l = Object.keys(r); c < l.length; c++) {
+				var s = l[c];
+				'props' === s ||
+					s.startsWith('_') ||
+					(null != r[s] && (r[s] = p(r[s])));
 			}
 		return r;
 	};
-function l(t, e, n, o, f, u) {
-	e || (e = {});
+function l(t, n, e, o, f, u) {
+	n || (n = {});
 	var i,
-		c,
-		l = (e = p(e));
+		a,
+		l = (n = p(n));
 	if ('ref' in l)
-		for (c in ((l = {}), e)) 'ref' == c ? (i = e[c]) : (l[c] = e[c]);
-	var v = {
+		for (a in ((l = {}), n)) 'ref' == a ? (i = n[a]) : (l[a] = n[a]);
+	var s = {
 		type: t,
 		props: l,
-		key: n,
+		key: e,
 		ref: i,
 		__k: null,
 		__: null,
@@ -83,55 +89,55 @@ function l(t, e, n, o, f, u) {
 		__e: null,
 		__c: null,
 		constructor: void 0,
-		__v: --a,
+		__v: --c,
 		__i: -1,
 		__u: 0,
 		__source: f,
 		__self: u
 	};
 	if ('function' == typeof t && (i = t.defaultProps))
-		for (c in i) void 0 === l[c] && (l[c] = i[c]);
-	return r.vnode && r.vnode(v), v;
+		for (a in i) void 0 === l[a] && (l[a] = i[a]);
+	return r.vnode && r.vnode(s), s;
 }
-function v(r) {
-	var e = l(t, { tpl: r, exprs: [].slice.call(arguments, 1) });
-	return (e.key = e.__v), e;
+function s(r) {
+	var n = l(t, { tpl: r, exprs: [].slice.call(arguments, 1) });
+	return (n.key = n.__v), n;
 }
-var s = {},
+var v = {},
 	_ = /[A-Z]/g;
-function y(t, e) {
+function y(t, n) {
 	if (r.attr) {
-		var n = r.attr(t, e);
-		if ('string' == typeof n) return n;
+		var e = r.attr(t, n);
+		if ('string' == typeof e) return e;
 	}
 	if ('ref' === t || 'key' === t) return '';
-	if ('style' === t && 'object' == typeof e) {
+	if ('style' === t && 'object' == typeof n) {
 		var o = '';
-		for (var f in e) {
-			var a = e[f];
-			if (null != a && '' !== a) {
-				var c =
+		for (var f in n) {
+			var c = n[f];
+			if (null != c && '' !== c) {
+				var a =
 						'-' == f[0]
 							? f
-							: s[f] || (s[f] = f.replace(_, '-$&').toLowerCase()),
+							: v[f] || (v[f] = f.replace(_, '-$&').toLowerCase()),
 					p = ';';
-				'number' != typeof a || c.startsWith('--') || i.test(c) || (p = 'px;'),
-					(o = o + c + ':' + a + p);
+				'number' != typeof c || a.startsWith('--') || i.test(a) || (p = 'px;'),
+					(o = o + a + ':' + c + p);
 			}
 		}
 		return t + '="' + o + '"';
 	}
-	return null == e || !1 === e || 'function' == typeof e || 'object' == typeof e
+	return null == n || !1 === n || 'function' == typeof n || 'object' == typeof n
 		? ''
-		: !0 === e
+		: !0 === n
 			? t
-			: t + '="' + u(e) + '"';
+			: t + '="' + u(n) + '"';
 }
 function b(r) {
 	if (null == r || 'boolean' == typeof r || 'function' == typeof r) return null;
 	if ('object' == typeof r) {
 		if (void 0 === r.constructor) return r;
-		if (c(r)) {
+		if (a(r)) {
 			for (var t = 0; t < r.length; t++) r[t] = b(r[t]);
 			return r;
 		}
@@ -143,7 +149,7 @@ export {
 	y as jsxAttr,
 	l as jsxDEV,
 	b as jsxEscape,
-	v as jsxTemplate,
+	s as jsxTemplate,
 	l as jsxs
 };
 //# sourceMappingURL=jsxRuntime.module.js.map

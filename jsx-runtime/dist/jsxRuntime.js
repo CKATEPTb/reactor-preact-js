@@ -44,8 +44,14 @@ var u = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
 							return r.request(Number.MAX_SAFE_INTEGER);
 						})
 						.distinctUntilChanged()
-						.doOnNext(u)
-						.subscribe();
+						.subscribe({
+							onNext: function (r) {
+								return u(r);
+							},
+							onError: function (r) {
+								return console.error(r);
+							}
+						});
 					return function () {
 						return e.unsubscribe();
 					};
@@ -70,7 +76,7 @@ function a(e, t, n, o, u, i) {
 		l = (t = c(t));
 	if ('ref' in l)
 		for (p in ((l = {}), t)) 'ref' == p ? (a = t[p]) : (l[p] = t[p]);
-	var v = {
+	var s = {
 		type: e,
 		props: l,
 		key: n,
@@ -89,7 +95,7 @@ function a(e, t, n, o, u, i) {
 	};
 	if ('function' == typeof e && (a = e.defaultProps))
 		for (p in a) void 0 === l[p] && (l[p] = a[p]);
-	return r.options.vnode && r.options.vnode(v), v;
+	return r.options.vnode && r.options.vnode(s), s;
 }
 var p = {},
 	l = /[A-Z]/g;
@@ -115,12 +121,12 @@ Object.defineProperty(exports, 'Fragment', {
 							'-' == i[0]
 								? i
 								: p[i] || (p[i] = i.replace(l, '-$&').toLowerCase()),
-						v = ';';
+						s = ';';
 					'number' != typeof c ||
 						a.startsWith('--') ||
 						u.test(a) ||
-						(v = 'px;'),
-						(f = f + a + ':' + c + v);
+						(s = 'px;'),
+						(f = f + a + ':' + c + s);
 				}
 			}
 			return e + '="' + f + '"';
