@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 npm-debug.log
-dist
+#dist
 */package-lock.json
 yarn.lock
 .vscode
@@ -13,3 +13,4 @@ coverage
 package/
 preact-*.tgz
 preact.tgz
+/pnpm-lock.yaml
