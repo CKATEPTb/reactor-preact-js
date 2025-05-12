@@ -11,7 +11,8 @@
   "types": "src/index.d.ts",
   "license": "MIT",
   "peerDependencies": {
-    "preact": "^10.0.0"
+    "preact": "^10.0.0",
+    "@ckateptb/reactive-core-js": "github:CKATEPTb/reactor-core-js#production"
   },
   "mangle": {
     "regex": "^_"

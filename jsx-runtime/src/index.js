@@ -1,10 +1,39 @@
 import { options, Fragment } from 'preact';
 import { encodeEntities } from './utils';
 import { IS_NON_DIMENSIONAL } from '../../src/constants';
+import { useEffect, useState } from 'preact/hooks';
+import { Flux } from '@ckateptb/reactive-core-js';
 
 let vnodeId = 0;
 
 const isArray = Array.isArray;
+const isPublisher = obj =>
+	typeof obj == 'object' && typeof obj?.subscribe == 'function';
+const dePublisher = props => {
+	if (isArray(props)) return props.map(props => dePublisher(props));
+	if (isPublisher(props)) {
+		const [pub, setPub] = useState();
+		useEffect(() => {
+			const subscription = Flux.from(props)
+				.doOnSubscribe(subscription =>
+					subscription.request(Number.MAX_SAFE_INTEGER)
+				)
+				.distinctUntilChanged()
+				.doOnNext(setPub)
+				.subscribe();
+			return () => subscription.unsubscribe();
+		}, []);
+		return pub;
+	}
+	if (typeof props == 'object') {
+		for (let key of Object.keys(props)) {
+			if (key === 'props' || key.startsWith('_')) continue;
+			if (props[key] == null) continue;
+			props[key] = dePublisher(props[key]);
+		}
+	}
+	return props;
+};
 
 /**
  * @fileoverview
@@ -28,6 +57,7 @@ const isArray = Array.isArray;
  */
 function createVNode(type, props, key, isStaticChildren, __source, __self) {
 	if (!props) props = {};
+	props = dePublisher(props);
 	// We'll want to preserve `ref` in props to get rid of the need for
 	// forwardRef components in the future, but that should happen via
 	// a separate PR.

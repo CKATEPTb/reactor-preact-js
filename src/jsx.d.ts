@@ -9,6 +9,7 @@ import {
 	PreactDOMAttributes,
 	VNode
 } from 'preact';
+import { Publisher } from '@ckateptb/reactive-core-js';
 
 type Defaultize<Props, Defaults> =
 	// Distribute over unions
@@ -111,7 +112,7 @@ export namespace JSXInternal {
 		subscribe(fn: (value: T) => void): () => void;
 	}
 
-	export type Signalish<T> = T | SignalLike<T>;
+	export type Signalish<T> = T | SignalLike<T> | Publisher<T>;
 
 	export type UnpackSignal<T> = T extends SignalLike<infer V> ? V : T;
 
