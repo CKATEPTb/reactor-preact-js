@@ -1,12 +1,12 @@
-import { options as r, Fragment as t } from 'preact';
+import { options as r, Fragment as n } from 'preact';
 export { Fragment } from 'preact';
-import { useState as n, useEffect as e } from 'preact/hooks';
-import { Flux as o } from '@ckateptb/reactive-core-js';
+import { useState as t, useEffect as e } from 'preact/hooks';
+import { Flux as o } from 'reactor-core-ts';
 var f = /["&<]/;
 function u(r) {
 	if (0 === r.length || !1 === f.test(r)) return r;
-	for (var t = 0, n = 0, e = '', o = ''; n < r.length; n++) {
-		switch (r.charCodeAt(n)) {
+	for (var n = 0, t = 0, e = '', o = ''; t < r.length; t++) {
+		switch (r.charCodeAt(t)) {
 			case 34:
 				o = '&quot;';
 				break;
@@ -19,9 +19,9 @@ function u(r) {
 			default:
 				continue;
 		}
-		n !== t && (e += r.slice(t, n)), (e += o), (t = n + 1);
+		t !== n && (e += r.slice(n, t)), (e += o), (n = t + 1);
 	}
-	return n !== t && (e += r.slice(t, n)), e;
+	return t !== n && (e += r.slice(n, t)), e;
 }
 var i = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
 	c = 0,
@@ -35,12 +35,12 @@ var i = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
 			'object' == typeof (i = r) &&
 			'function' == typeof (null == i ? void 0 : i.subscribe)
 		) {
-			var t = n(),
-				f = t[0],
-				u = t[1];
+			var n = t(),
+				f = n[0],
+				u = n[1];
 			return (
 				e(function () {
-					var t = o
+					var n = o
 						.from(r)
 						.doOnSubscribe(function (r) {
 							return r.request(Number.MAX_SAFE_INTEGER);
@@ -55,7 +55,7 @@ var i = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
 							}
 						});
 					return function () {
-						return t.unsubscribe();
+						return n.unsubscribe();
 					};
 				}, []),
 				f
@@ -71,15 +71,15 @@ var i = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
 			}
 		return r;
 	};
-function l(t, n, e, o, f, u) {
-	n || (n = {});
+function l(n, t, e, o, f, u) {
+	t || (t = {});
 	var i,
 		a,
-		l = (n = p(n));
+		l = (t = p(t));
 	if ('ref' in l)
-		for (a in ((l = {}), n)) 'ref' == a ? (i = n[a]) : (l[a] = n[a]);
+		for (a in ((l = {}), t)) 'ref' == a ? (i = t[a]) : (l[a] = t[a]);
 	var s = {
-		type: t,
+		type: n,
 		props: l,
 		key: e,
 		ref: i,
@@ -95,26 +95,26 @@ function l(t, n, e, o, f, u) {
 		__source: f,
 		__self: u
 	};
-	if ('function' == typeof t && (i = t.defaultProps))
+	if ('function' == typeof n && (i = n.defaultProps))
 		for (a in i) void 0 === l[a] && (l[a] = i[a]);
 	return r.vnode && r.vnode(s), s;
 }
 function s(r) {
-	var n = l(t, { tpl: r, exprs: [].slice.call(arguments, 1) });
-	return (n.key = n.__v), n;
+	var t = l(n, { tpl: r, exprs: [].slice.call(arguments, 1) });
+	return (t.key = t.__v), t;
 }
 var v = {},
 	_ = /[A-Z]/g;
-function y(t, n) {
+function y(n, t) {
 	if (r.attr) {
-		var e = r.attr(t, n);
+		var e = r.attr(n, t);
 		if ('string' == typeof e) return e;
 	}
-	if ('ref' === t || 'key' === t) return '';
-	if ('style' === t && 'object' == typeof n) {
+	if ('ref' === n || 'key' === n) return '';
+	if ('style' === n && 'object' == typeof t) {
 		var o = '';
-		for (var f in n) {
-			var c = n[f];
+		for (var f in t) {
+			var c = t[f];
 			if (null != c && '' !== c) {
 				var a =
 						'-' == f[0]
@@ -125,20 +125,20 @@ function y(t, n) {
 					(o = o + a + ':' + c + p);
 			}
 		}
-		return t + '="' + o + '"';
+		return n + '="' + o + '"';
 	}
-	return null == n || !1 === n || 'function' == typeof n || 'object' == typeof n
+	return null == t || !1 === t || 'function' == typeof t || 'object' == typeof t
 		? ''
-		: !0 === n
-			? t
-			: t + '="' + u(n) + '"';
+		: !0 === t
+			? n
+			: n + '="' + u(t) + '"';
 }
 function b(r) {
 	if (null == r || 'boolean' == typeof r || 'function' == typeof r) return null;
 	if ('object' == typeof r) {
 		if (void 0 === r.constructor) return r;
 		if (a(r)) {
-			for (var t = 0; t < r.length; t++) r[t] = b(r[t]);
+			for (var n = 0; n < r.length; n++) r[n] = b(r[n]);
 			return r;
 		}
 	}

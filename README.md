@@ -3,7 +3,7 @@
 ## 📌 Purpose
 
 This fork of [Preact](https://github.com/preactjs/preact) adds support for handling reactive publishers from 
-the [@ckateptb/reactor-core-js](https://github.com/CKATEPTb/reactor-core-js) library. The primary goal of this fork 
+the [reactor-core-ts](https://github.com/CKATEPTb/reactor-core-ts) library. The primary goal of this fork 
 is to enable seamless integration of reactive streams into Preact components.
 
 ## 🚀 Features
@@ -26,7 +26,7 @@ is to enable seamless integration of reactive streams into Preact components.
 ### Example with Reactive Children
 
 ```tsx
-import { Publisher, Sinks } from '@ckateptb/reactor-core-js';
+import { Publisher, Sinks } from 'reactor-core-ts';
 import { Component } from 'preact';
 
 export default class MyComponent extends Component<{

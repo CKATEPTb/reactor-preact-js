@@ -1,23 +1,20 @@
-!(function (e, r) {
+!(function (r, e) {
 	'object' == typeof exports && 'undefined' != typeof module
-		? r(
+		? e(
 				exports,
 				require('preact'),
 				require('preact/hooks'),
-				require('@ckateptb/reactive-core-js')
+				require('reactor-core-ts')
 			)
 		: 'function' == typeof define && define.amd
-			? define(
-					['exports', 'preact', 'preact/hooks', '@ckateptb/reactive-core-js'],
-					r
-				)
-			: r(((e || self).jsxRuntime = {}), e.preact, e.hooks, e.reactiveCoreJs);
-})(this, function (e, r, n, t) {
+			? define(['exports', 'preact', 'preact/hooks', 'reactor-core-ts'], e)
+			: e(((r || self).jsxRuntime = {}), r.preact, r.hooks, r.reactorCoreTs);
+})(this, function (r, e, n, t) {
 	var o = /["&<]/;
-	function f(e) {
-		if (0 === e.length || !1 === o.test(e)) return e;
-		for (var r = 0, n = 0, t = '', f = ''; n < e.length; n++) {
-			switch (e.charCodeAt(n)) {
+	function f(r) {
+		if (0 === r.length || !1 === o.test(r)) return r;
+		for (var e = 0, n = 0, t = '', f = ''; n < r.length; n++) {
+			switch (r.charCodeAt(n)) {
 				case 34:
 					f = '&quot;';
 					break;
@@ -30,67 +27,67 @@
 				default:
 					continue;
 			}
-			n !== r && (t += e.slice(r, n)), (t += f), (r = n + 1);
+			n !== e && (t += r.slice(e, n)), (t += f), (e = n + 1);
 		}
-		return n !== r && (t += e.slice(r, n)), t;
+		return n !== e && (t += r.slice(e, n)), t;
 	}
 	var u = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
 		i = 0,
 		c = Array.isArray,
-		a = function (e) {
-			if (c(e))
-				return e.map(function (e) {
-					return a(e);
+		a = function (r) {
+			if (c(r))
+				return r.map(function (r) {
+					return a(r);
 				});
 			if (
-				'object' == typeof (u = e) &&
+				'object' == typeof (u = r) &&
 				'function' == typeof (null == u ? void 0 : u.subscribe)
 			) {
-				var r = n.useState(),
-					o = r[0],
-					f = r[1];
+				var e = n.useState(),
+					o = e[0],
+					f = e[1];
 				return (
 					n.useEffect(function () {
-						var r = t.Flux.from(e)
-							.doOnSubscribe(function (e) {
-								return e.request(Number.MAX_SAFE_INTEGER);
+						var e = t.Flux.from(r)
+							.doOnSubscribe(function (r) {
+								return r.request(Number.MAX_SAFE_INTEGER);
 							})
 							.distinctUntilChanged()
 							.subscribe({
-								onNext: function (e) {
-									return f(e);
+								onNext: function (r) {
+									return f(r);
 								},
-								onError: function (e) {
-									return console.error(e);
+								onError: function (r) {
+									return console.error(r);
 								}
 							});
 						return function () {
-							return r.unsubscribe();
+							return e.unsubscribe();
 						};
 					}, []),
 					o
 				);
 			}
 			var u;
-			if ('object' == typeof e)
-				for (var i = 0, p = Object.keys(e); i < p.length; i++) {
-					var l = p[i];
-					'props' === l ||
-						l.startsWith('_') ||
-						(null != e[l] && (e[l] = a(e[l])));
+			if ('object' == typeof r)
+				for (var i = 0, l = Object.keys(r); i < l.length; i++) {
+					var p = l[i];
+					'props' === p ||
+						p.startsWith('_') ||
+						(null != r[p] && (r[p] = a(r[p])));
 				}
-			return e;
+			return r;
 		};
-	function p(e, n, t, o, f, u) {
+	function l(r, n, t, o, f, u) {
 		n || (n = {});
 		var c,
-			p,
-			l = (n = a(n));
-		if ('ref' in l)
-			for (p in ((l = {}), n)) 'ref' == p ? (c = n[p]) : (l[p] = n[p]);
+			l,
+			p = (n = a(n));
+		if ('ref' in p)
+			for (l in ((p = {}), n)) 'ref' == l ? (c = n[l]) : (p[l] = n[l]);
 		var s = {
-			type: e,
-			props: l,
+			type: r,
+			props: p,
 			key: t,
 			ref: c,
 			__k: null,
@@ -105,26 +102,26 @@
 			__source: f,
 			__self: u
 		};
-		if ('function' == typeof e && (c = e.defaultProps))
-			for (p in c) void 0 === l[p] && (l[p] = c[p]);
-		return r.options.vnode && r.options.vnode(s), s;
+		if ('function' == typeof r && (c = r.defaultProps))
+			for (l in c) void 0 === p[l] && (p[l] = c[l]);
+		return e.options.vnode && e.options.vnode(s), s;
 	}
-	var l = {},
+	var p = {},
 		s = /[A-Z]/g;
-	Object.defineProperty(e, 'Fragment', {
+	Object.defineProperty(r, 'Fragment', {
 		enumerable: !0,
 		get: function () {
-			return r.Fragment;
+			return e.Fragment;
 		}
 	}),
-		(e.jsx = p),
-		(e.jsxAttr = function (e, n) {
-			if (r.options.attr) {
-				var t = r.options.attr(e, n);
+		(r.jsx = l),
+		(r.jsxAttr = function (r, n) {
+			if (e.options.attr) {
+				var t = e.options.attr(r, n);
 				if ('string' == typeof t) return t;
 			}
-			if ('ref' === e || 'key' === e) return '';
-			if ('style' === e && 'object' == typeof n) {
+			if ('ref' === r || 'key' === r) return '';
+			if ('style' === r && 'object' == typeof n) {
 				var o = '';
 				for (var i in n) {
 					var c = n[i];
@@ -132,16 +129,16 @@
 						var a =
 								'-' == i[0]
 									? i
-									: l[i] || (l[i] = i.replace(s, '-$&').toLowerCase()),
-							p = ';';
+									: p[i] || (p[i] = i.replace(s, '-$&').toLowerCase()),
+							l = ';';
 						'number' != typeof c ||
 							a.startsWith('--') ||
 							u.test(a) ||
-							(p = 'px;'),
-							(o = o + a + ':' + c + p);
+							(l = 'px;'),
+							(o = o + a + ':' + c + l);
 					}
 				}
-				return e + '="' + o + '"';
+				return r + '="' + o + '"';
 			}
 			return null == n ||
 				!1 === n ||
@@ -149,26 +146,26 @@
 				'object' == typeof n
 				? ''
 				: !0 === n
-					? e
-					: e + '="' + f(n) + '"';
+					? r
+					: r + '="' + f(n) + '"';
 		}),
-		(e.jsxDEV = p),
-		(e.jsxEscape = function e(r) {
-			if (null == r || 'boolean' == typeof r || 'function' == typeof r)
+		(r.jsxDEV = l),
+		(r.jsxEscape = function r(e) {
+			if (null == e || 'boolean' == typeof e || 'function' == typeof e)
 				return null;
-			if ('object' == typeof r) {
-				if (void 0 === r.constructor) return r;
-				if (c(r)) {
-					for (var n = 0; n < r.length; n++) r[n] = e(r[n]);
-					return r;
+			if ('object' == typeof e) {
+				if (void 0 === e.constructor) return e;
+				if (c(e)) {
+					for (var n = 0; n < e.length; n++) e[n] = r(e[n]);
+					return e;
 				}
 			}
-			return f('' + r);
+			return f('' + e);
 		}),
-		(e.jsxTemplate = function (e) {
-			var n = p(r.Fragment, { tpl: e, exprs: [].slice.call(arguments, 1) });
+		(r.jsxTemplate = function (r) {
+			var n = l(e.Fragment, { tpl: r, exprs: [].slice.call(arguments, 1) });
 			return (n.key = n.__v), n;
 		}),
-		(e.jsxs = p);
+		(r.jsxs = l);
 });
 //# sourceMappingURL=jsxRuntime.umd.js.map

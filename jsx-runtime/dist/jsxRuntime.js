@@ -1,6 +1,6 @@
 var r = require('preact'),
 	e = require('preact/hooks'),
-	t = require('@ckateptb/reactive-core-js'),
+	t = require('reactor-core-ts'),
 	n = /["&<]/;
 function o(r) {
 	if (0 === r.length || !1 === n.test(r)) return r;

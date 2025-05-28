@@ -12,7 +12,7 @@
   "license": "MIT",
   "peerDependencies": {
     "preact": "^10.0.0",
-    "@ckateptb/reactive-core-js": "github:CKATEPTb/reactor-core-js#production"
+    "reactor-core-ts": "^1.0.8-beta"
   },
   "mangle": {
     "regex": "^_"
