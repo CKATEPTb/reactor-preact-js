@@ -9,7 +9,7 @@ import {
 	PreactDOMAttributes,
 	VNode
 } from 'preact';
-import { Publisher } from '@ckateptb/reactive-core-js';
+import { Publisher } from 'reactor-core-ts';
 
 type Defaultize<Props, Defaults> =
 	// Distribute over unions

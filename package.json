@@ -1,7 +1,7 @@
 {
   "name": "preact",
   "amdName": "preact",
-  "version": "10.26.7",
+  "version": "10.26.8",
   "private": false,
   "description": "Fast 3kb React-compatible Virtual DOM library.",
   "main": "dist/preact.js",
@@ -237,11 +237,13 @@
     "undici": "^4.12.0",
     "vite": "^6.2.0",
     "vitest": "^3.1.2",
-    "webdriverio": "^9.11.0",
-    "@ckateptb/reactive-core-js": "github:CKATEPTb/reactor-core-js#production"
+    "webdriverio": "^9.11.0"
   },
   "volta": {
     "node": "20.19.1"
   },
-  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
+  "dependencies": {
+    "reactor-core-ts": "1.0.8-beta"
+  }
 }

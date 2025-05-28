@@ -2,7 +2,7 @@ import { options, Fragment } from 'preact';
 import { encodeEntities } from './utils';
 import { IS_NON_DIMENSIONAL } from '../../src/constants';
 import { useEffect, useState } from 'preact/hooks';
-import { Flux } from '@ckateptb/reactive-core-js';
+import { Flux } from 'reactor-core-ts';
 
 let vnodeId = 0;
 
